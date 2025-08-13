@@ -1,0 +1,8 @@
+adrf==0.1.9
+asgiref==3.9.1
+async-property==0.2.2
+Django==5.2.5
+django-filter==25.1
+djangorestframework==3.16.1
+python-dotenv==1.1.1
+sqlparse==0.5.3
