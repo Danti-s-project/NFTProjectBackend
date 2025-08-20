@@ -8,14 +8,14 @@ class NFTCollection(models.Model):
     """
     name = models.TextField(max_length=50, primary_key=True)
     alias = models.TextField(max_length=50, null=True)
-    issued = models.IntegerField()
+    indexed = models.IntegerField(default=0)
+    quantity = models.IntegerField()
 
 class NFTOwner(models.Model):
     """
     Владельцы NFT записанные в базе данных
     """
-    user_id = models.IntegerField(max_length=50, primary_key=True)
-    username = models.TextField(max_length=50, unique=True)
+    name = models.TextField(max_length=50, primary_key=True, name="username")
 
 class NFTModel(models.Model):
     """
@@ -45,4 +45,4 @@ class NFT(models.Model):
     nft_model = models.ForeignKey(NFTModel, on_delete=models.CASCADE)
     backdrop = models.ForeignKey(NFTBackdrop, on_delete=models.CASCADE)
     symbol = models.ForeignKey(NFTBSymbol, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    issued = models.IntegerField()
