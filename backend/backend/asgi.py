@@ -11,6 +11,16 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+from nfts.service.worker_manager import WorkerManager
+
+
+# Инициализируем WorkerManager
+worker_manager = WorkerManager()
+
+worker_manager.create_workers()
+worker_manager.run_workers()
+
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 
 application = get_asgi_application()
