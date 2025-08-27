@@ -9,11 +9,10 @@ class User(models.Model):
     username = models.TextField(max_length=50)
     fullname = models.TextField(max_length=200)
     registration_date = models.DateTimeField(auto_now_add=True)
-    language = models.TextField(max_length=5)
+    language = models.TextField(max_length=5, default='en')
     ref_user = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
     is_premium = models.BooleanField(default=False)
     balance = models.FloatField(default=0)
-
 
 # Модели по курсам в боте
 
@@ -26,7 +25,6 @@ class BaseCourse(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     chapter = models.IntegerField()
     lesson = models.IntegerField()
-
 
     class Meta:
         abstract = True
