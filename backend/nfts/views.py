@@ -9,7 +9,7 @@ from nfts.pagination import NFTPagination
 
 # Create your views here.
 
-class NFTViewSet(viewsets.ModelViewSet):
+class NFTViewSet(viewsets.ReadOnlyModelViewSet):
     """
     ViewSet для работы с объектами NFT.
 
@@ -39,7 +39,7 @@ class NFTViewSet(viewsets.ModelViewSet):
     filterset_fields = ['collection', 'nft_model', 'backdrop', 'symbol', 'quantity']
 
 
-class BaseNFTPropertyViewSet(viewsets.ModelViewSet):
+class BaseNFTPropertyViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Базовый класс, который наследуют все ViewSet'ы моделей-списков свойств NFT таких как модели, коллекции символы и т.д.
 
@@ -50,6 +50,9 @@ class BaseNFTPropertyViewSet(viewsets.ModelViewSet):
       * limit - количество элементов на странице (по умолчанию: 10)
       * offset - смещение от начала списка
       * ordering - поле для сортировки (по умолчанию: 'name')
+
+    Доступные методы:
+    * GET - получение списка элементов и детальной информации
 
     Пример запроса с пагинацией и сортировкой:
     `GET /api/nfts/collections/?limit=5&offset=10&ordering=-name`
@@ -67,10 +70,7 @@ class NFTModelViewSet(BaseNFTPropertyViewSet):
 
     Эндпоинты:
     * `GET /api/nfts/models/` - получение списка всех моделей NFT
-    * `POST /api/nfts/models/` - создание новой модели NFT
     * `GET /api/nfts/models/{name}/` - получение данных конкретной модели
-    * `PUT /api/nfts/models/{name}/` - обновление модели
-    * `DELETE /api/nfts/models/{name}/` - удаление модели
 
     Наследуется от BaseNFTPropertyViewSet и предоставляет все его функции:
     - Сортировку по полю 'name'
@@ -91,10 +91,7 @@ class NFTBackdropViewSet(BaseNFTPropertyViewSet):
 
     Эндпоинты:
     * `GET /api/nfts/backdrops/` - получение списка всех бекдропов
-    * `POST /api/nfts/backdrops/` - создание нового бекдропа
     * `GET /api/nfts/backdrops/{name}/` - получение данных конкретного бекдропа
-    * `PUT /api/nfts/backdrops/{name}/` - обновление бекдропа
-    * `DELETE /api/nfts/backdrops/{name}/` - удаление бекдропа
 
     Наследуется от BaseNFTPropertyViewSet и предоставляет все его функции:
     - Сортировку по полю 'name'
@@ -115,10 +112,7 @@ class NFTSymbolViewSet(BaseNFTPropertyViewSet):
 
     Эндпоинты:
     * `GET /api/nfts/symbols/` - получение списка всех символов
-    * `POST /api/nfts/symbols/` - создание нового символа
     * `GET /api/nfts/symbols/{name}/` - получение данных конкретного символа
-    * `PUT /api/nfts/symbols/{name}/` - обновление символа
-    * `DELETE /api/nfts/symbols/{name}/` - удаление символа
 
     Наследуется от BaseNFTPropertyViewSet и предоставляет все его функции:
     - Сортировку по полю 'name'
@@ -139,11 +133,7 @@ class NFTCollectionViewSet(BaseNFTPropertyViewSet):
 
     Эндпоинты:
     * `GET /api/nfts/collections/` - получение списка всех коллекций
-    * `POST /api/nfts/collections/` - создание новой коллекции
     * `GET /api/nfts/collections/{name}/` - получение данных конкретной коллекции
-    * `PUT /api/nfts/collections/{name}/` - обновление коллекции
-    * `PATCH /api/nfts/collections/{name}/` - частичное обновление коллекции
-    * `DELETE /api/nfts/collections/{name}/` - удаление коллекции
 
     Наследуется от BaseNFTPropertyViewSet и предоставляет все его функции:
     - Сортировку по полю 'name'
