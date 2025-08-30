@@ -10,10 +10,14 @@ bs4==0.0.2
 Django==5.2.5
 django-filter==25.1
 djangorestframework==3.16.1
+flake8==7.3.0
 frozenlist==1.7.0
 idna==3.10
+mccabe==0.7.0
 multidict==6.6.4
 propcache==0.3.2
+pycodestyle==2.14.0
+pyflakes==3.4.0
 python-dotenv==1.1.1
 soupsieve==2.7
 sqlparse==0.5.3
