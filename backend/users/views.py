@@ -1,13 +1,14 @@
-from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 
 from users.models import User, ScamCourse, NFTSellCourse, ToncoinCourse, P2PCourse
 from users.serializer import UserSerializer, AbstractCourceSerializer
 
+
 # Create your views here.
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    lookup_field = 'user_id'
 
 
 class ScamCourseViewSet(ModelViewSet):
