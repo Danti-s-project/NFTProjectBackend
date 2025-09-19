@@ -1,8 +1,9 @@
 from adrf import viewsets
-from django_filters.rest_framework import DjangoFilterBackend, OrderingFilter
+from rest_framework.filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 import nfts.models
-from nfts.serializers import NFTSerializer, NFTModelSerializer, NFTBackdropSerializer, NFTBSymbolSerializer, \
+from nfts.serializers import NFTSerializer, NFTModelSerializer, NFTBackdropSerializer, NFTSymbolSerializer, \
     NFTCollectionSerializer
 from nfts.pagination import NFTPagination
 
@@ -118,13 +119,13 @@ class NFTSymbolViewSet(BaseNFTPropertyViewSet):
     - Сортировку по полю 'name'
     - Пагинацию (10 элементов на страницу по умолчанию)
 
-    Работает с моделью NFTBSymbol, которая представляет символы, используемые в NFT.
+    Работает с моделью NFTSymbol, которая представляет символы, используемые в NFT.
 
     Основное поле модели:
     - name: Текстовое поле (первичный ключ)
     """
-    queryset = nfts.models.NFTBSymbol.objects.all()
-    serializer_class = NFTBSymbolSerializer
+    queryset = nfts.models.NFTSymbol.objects.all()
+    serializer_class = NFTSymbolSerializer
 
 
 class NFTCollectionViewSet(BaseNFTPropertyViewSet):

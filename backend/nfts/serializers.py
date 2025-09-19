@@ -4,7 +4,7 @@
 
 from rest_framework import serializers
 
-from nfts.models import NFT, NFTBackdrop, NFTModel, NFTCollection, NFTOwner, NFTBSymbol
+from nfts.models import NFT, NFTBackdrop, NFTModel, NFTCollection, NFTOwner, NFTSymbol
 
 
 class NFTSerializer(serializers.ModelSerializer):
@@ -52,10 +52,10 @@ class NFTOwnerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class NFTBSymbolSerializer(serializers.ModelSerializer):
+class NFTSymbolSerializer(serializers.ModelSerializer):
     """
     NFT BSymbol сериализатор
     """
     class Meta:
-        model = NFTBSymbol
+        model = NFTSymbol
         fields = '__all__'

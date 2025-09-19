@@ -22,18 +22,21 @@ class NFTModel(models.Model):
     Название модели NFT
     """
     name = models.TextField(max_length=50, primary_key=True)
+    collection = models.ForeignKey(NFTCollection, on_delete=models.CASCADE)
 
 class NFTBackdrop(models.Model):
     """
     Бекдроп NFT
     """
     name = models.TextField(max_length=50, primary_key=True)
+    collection = models.ForeignKey(NFTCollection, on_delete=models.CASCADE)
 
-class NFTBSymbol(models.Model):
+class NFTSymbol(models.Model):
     """
     symbol у NFT
     """
     name = models.TextField(max_length=50, primary_key=True)
+    collection = models.ForeignKey(NFTCollection, on_delete=models.CASCADE)
 
 class NFT(models.Model):
     """
@@ -44,5 +47,5 @@ class NFT(models.Model):
     owner = models.ForeignKey(NFTOwner, on_delete=models.CASCADE, null=True)
     nft_model = models.ForeignKey(NFTModel, on_delete=models.CASCADE)
     backdrop = models.ForeignKey(NFTBackdrop, on_delete=models.CASCADE)
-    symbol = models.ForeignKey(NFTBSymbol, on_delete=models.CASCADE)
+    symbol = models.ForeignKey(NFTSymbol, on_delete=models.CASCADE)
     issued = models.IntegerField()

@@ -4,7 +4,7 @@ from typing import Optional
 import aiohttp
 import bs4
 
-from nfts.models import NFTCollection, NFT, NFTOwner, NFTBSymbol, NFTModel, NFTBackdrop
+from nfts.models import NFTCollection, NFT, NFTOwner, NFTSymbol, NFTModel, NFTBackdrop
 
 
 class Worker:
@@ -114,7 +114,7 @@ class Worker:
             new.owner = await self.__get_or_create_related(NFTOwner, nft_info.owner)
         new.model = await self.__get_or_create_related(NFTModel, nft_info.model)
         new.backdrop = await self.__get_or_create_related(NFTBackdrop, nft_info.backdrop)
-        new.symbol = await self.__get_or_create_related(NFTBSymbol, nft_info.symbol)
+        new.symbol = await self.__get_or_create_related(NFTSymbol, nft_info.symbol)
 
         await new.asave()
 
