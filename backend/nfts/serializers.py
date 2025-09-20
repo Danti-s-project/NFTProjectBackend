@@ -31,7 +31,7 @@ class NFTBackdropSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = NFTBackdrop
-        fields = '__all__'
+        fields = ['name']
 
 
 class NFTModelSerializer(serializers.ModelSerializer):
@@ -40,7 +40,7 @@ class NFTModelSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = NFTModel
-        fields = '__all__'
+        fields = ['name']
 
 
 class NFTOwnerSerializer(serializers.ModelSerializer):
@@ -58,4 +58,4 @@ class NFTSymbolSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = NFTSymbol
-        fields = '__all__'
+        fields = ['name']

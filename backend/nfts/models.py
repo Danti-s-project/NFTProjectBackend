@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class NFTCollection(models.Model):
@@ -7,7 +8,6 @@ class NFTCollection(models.Model):
     Коллекция к которой относится NFT
     """
     name = models.TextField(max_length=50, primary_key=True)
-    alias = models.TextField(max_length=50, null=True)
     indexed = models.IntegerField(default=0)
     quantity = models.IntegerField()
 
@@ -22,21 +22,21 @@ class NFTModel(models.Model):
     Название модели NFT
     """
     name = models.TextField(max_length=50, primary_key=True)
-    collection = models.ForeignKey(NFTCollection, on_delete=models.CASCADE)
+    collections = models.ManyToManyField(NFTCollection)
 
 class NFTBackdrop(models.Model):
     """
     Бекдроп NFT
     """
     name = models.TextField(max_length=50, primary_key=True)
-    collection = models.ForeignKey(NFTCollection, on_delete=models.CASCADE)
+    collections = models.ManyToManyField(NFTCollection)
 
 class NFTSymbol(models.Model):
     """
     symbol у NFT
     """
     name = models.TextField(max_length=50, primary_key=True)
-    collection = models.ForeignKey(NFTCollection, on_delete=models.CASCADE)
+    collections = models.ManyToManyField(NFTCollection)
 
 class NFT(models.Model):
     """

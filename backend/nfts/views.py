@@ -1,4 +1,5 @@
 from adrf import viewsets
+from adrf.viewsets import ReadOnlyModelViewSet
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -37,7 +38,7 @@ class NFTViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = nfts.models.NFT.objects.all()
     serializer_class = NFTSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['collection', 'nft_model', 'backdrop', 'symbol', 'quantity']
+    filterset_fields = ['collection', 'nft_model', 'backdrop', 'symbol', 'issued']
 
 
 class BaseNFTPropertyViewSet(viewsets.ReadOnlyModelViewSet):
@@ -59,10 +60,11 @@ class BaseNFTPropertyViewSet(viewsets.ReadOnlyModelViewSet):
     `GET /api/nfts/collections/?limit=5&offset=10&ordering=-name`
     """
 
-    filter_backends = [OrderingFilter]
+    filter_backends = [OrderingFilter, DjangoFilterBackend]
     pagination_class = NFTPagination
     ordering_fields = ['name']
     ordering = ['name']
+    filterset_fields = ["collections"]  # фильтрация по M2M
 
 
 class NFTModelViewSet(BaseNFTPropertyViewSet):
@@ -128,7 +130,7 @@ class NFTSymbolViewSet(BaseNFTPropertyViewSet):
     serializer_class = NFTSymbolSerializer
 
 
-class NFTCollectionViewSet(BaseNFTPropertyViewSet):
+class NFTCollectionViewSet(ReadOnlyModelViewSet):
     """
     ViewSet для работы с коллекциями NFT.
 
@@ -150,3 +152,7 @@ class NFTCollectionViewSet(BaseNFTPropertyViewSet):
     """
     queryset = nfts.models.NFTCollection.objects.all()
     serializer_class = NFTCollectionSerializer
+    filter_backends = [OrderingFilter]
+    pagination_class = NFTPagination
+    ordering_fields = ['name']
+    ordering = ['name']
