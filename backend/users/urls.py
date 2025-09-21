@@ -9,8 +9,8 @@ urlpatterns = [
         'patch': 'partial_update',
         'delete': 'destroy',
         'put': 'update'})),
-    path('p2p_course/', P2PCourseViewSet.as_view({'get': 'list'})),
-    path('toncoin_course/', ToncoinCourseViewSet.as_view({'get': 'list'})),
-    path('scam_course/', ScamCourseViewSet.as_view({'get': 'list'})),
-    path('nft_sell_course/', NFTSellCourseViewSet.as_view({'get': 'list'}))
+    path('p2p_course/', P2PCourseViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('toncoin_course/', ToncoinCourseViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('scam_course/', ScamCourseViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('nft_sell_course/', NFTSellCourseViewSet.as_view({'get': 'list', 'post': 'create'}))
 ]
