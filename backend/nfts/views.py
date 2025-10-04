@@ -11,7 +11,7 @@ from nfts.pagination import NFTPagination
 
 # Create your views here.
 
-class NFTViewSet(viewsets.ReadOnlyModelViewSet):
+class NFTViewSet(viewsets.ModelViewSet):
     """
     ViewSet для работы с объектами NFT.
 
@@ -41,7 +41,7 @@ class NFTViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ['collection', 'nft_model', 'backdrop', 'symbol', 'issued']
 
 
-class BaseNFTPropertyViewSet(viewsets.ReadOnlyModelViewSet):
+class BaseNFTPropertyViewSet(viewsets.ModelViewSet):
     """
     Базовый класс, который наследуют все ViewSet'ы моделей-списков свойств NFT таких как модели, коллекции символы и т.д.
 
@@ -130,7 +130,7 @@ class NFTSymbolViewSet(BaseNFTPropertyViewSet):
     serializer_class = NFTSymbolSerializer
 
 
-class NFTCollectionViewSet(ReadOnlyModelViewSet):
+class NFTCollectionViewSet(viewsets.ModelViewSet):
     """
     ViewSet для работы с коллекциями NFT.
 
